@@ -7,13 +7,13 @@ categories:
 - 博客
 ---
 
-## 本地搭建hexo个人博客
+## 搭建hexo个人博客
 
-### 官网
+### 一、官网
 
 官网地址：[https://hexo.io/](https://hexo.io/)
 
-### 本地环境
+### 二、本地环境
 1、安装基本环境
 * 安装git、node.js
 
@@ -65,15 +65,15 @@ hexo s  # 简写命令
   打开[http://localhost:4000/](http://localhost:4000/)即可观察到博客欢迎页面
 
 
-3、撰写博客
-* 新建文章
+### 三、撰写博客
+1、新建文章
+* 执行下面命令可以在source/_posts下新建文章
 ```
-# 执行下面命令可以在source/_posts下新建文章
 hexo new "文章名"
 hexo n  # 简写命令
 ```
 
-4、生成静态网页
+2、生成静态网页
 * 清除缓存后执行生成静态资源命令
 ```
 # 执行下面的命令会在public目录下生成一系列html、css和js等文件
@@ -82,7 +82,7 @@ hexo generate
 hexo g  # 简写命令
 ```
 
-5、部署到github
+### 四、部署到github
 * 配置_config.yml中的github相关信息
 ```
 # Deployment
@@ -99,8 +99,12 @@ hexo deploy
 hexo d  # 简写命令
 ```
 
-## github.io
-
+* *注意*
+  * hexo会自动部署到github.io仓库中
+  * 博客项目应该托管在另外一个项目中，如my-blog.git，而不是github.io项目
+  * 如果博客项目也托管在github.io仓库中
+    * 那么当文章内容有修改执行git push和hexo deploy后很有可能会发生冲突
+    * 应尽量避免这种冲突情况的发生，所以博客项目单独托管在其他仓库中
 
 ## hexo 主题
 
