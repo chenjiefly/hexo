@@ -1,0 +1,75 @@
+.toc-article {
+    padding: 1em;
+    max-width: 4rem;
+    overflow: hidden;
+    border-radius: 0.2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 文章目录样式 */
+.toc-article .toc-title{
+    height: 1rem;
+    line-height: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+ 
+#toc {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.8em;
+    @media screen and (max-width: 600px){
+        display: none;
+    }
+}
+ 
+#toc .toc {
+    position: relative;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+ 
+#toc li , .toc li {
+    list-style-type: none
+}
+ 
+#toc ol {
+    margin: 0;
+}
+
+#toc .toc-child {
+    padding-left: 1.5em
+}
+
+#toc .toc-item {
+    width: 100rem;
+}
+
+/* 动画样式 */
+#toc,
+#toc .toc-title,
+#toc .toc {
+    transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+#toc:hover .toc-title {
+    font-size: 0.8rem;
+    color: black;
+}
+#toc:hover {
+    max-width: 15rem;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+#toc:hover .toc {
+    max-height: 50rem;
+}
+
+#toc:hover .toc-text {
+    color: #0B98D6;
+}
