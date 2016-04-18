@@ -73,3 +73,6 @@ deploy:
   type: git
   repo: git@github.com:chenjiefly/chenjiefly.github.io.git
   branch: master
+
+# comment
+# disqus_shortname: chenjiefly

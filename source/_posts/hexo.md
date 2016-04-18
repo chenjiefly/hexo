@@ -110,6 +110,87 @@ hexo d  # 简写命令
 
 ### 官方主题集
 
-主题集地址：[https://github.com/hexojs/hexo/wiki/Themes](https://github.com/hexojs/hexo/wiki/Themes)
+* 主题集地址：[https://github.com/hexojs/hexo/wiki/Themes](https://github.com/hexojs/hexo/wiki/Themes)
+
+### 本博客使用的主题
+* hexo-theme-transparent
 
 
+## 添加文章目录
+
+### 一、添加目录的模板
+1、找到布局模板路径
+* 文章目录只能添加到layout的post布局上，因为还有详情页上才需要看目录而且能够拿到标题列表
+* 找到主题目录下的`layout/_partial/post/`目录
+
+2、添加目录模板文件
+* 在该目录下新建`toc.ejs`文件，内容如下
+```html
+<div id="toc" class="toc-article">
+    <div class="toc-title">本文目录</div>
+    <%- toc(item.content, {list_number: false}) %>
+</div>
+```
+* Hexo提供了toc()帮助函数，用来获取文章的标题列表
+```
+<%- toc(str, [options]) %>
+```
+
+str是文章内容，options有两个参数，一个是class，也就是html标签的class值，默认为toc；一个是list_number，是否显示列表编号，默认值是true。
+
+3、插入toc.ejs模板文件到布局`_partial/article.ejs`中
+```
+......
+    <div class="entry">
+      <% if (item.excerpt && index){ %>
+        <%- item.excerpt %>
+      <% } else { if (item.toc !== false) {%>
+        <%- partial('post/toc') %>
+      <% } %>
+        <%- item.content %>
+      <% } %>
+    </div>
+......
+```
+
+### 二、添加目录样式
+* 由于布局限制，文章页面右侧为搜索、分类和标签，因此将目录放在文章右上角，并提供hover展开功能
+* 样式代码请参考
+    * [https://github.com/chenjiefly/my-blog/blob/master/themes/hexo-theme-transparent/source/css/_partial/toc.styl](https://github.com/chenjiefly/my-blog/blob/master/themes/hexo-theme-transparent/source/css/_partial/toc.styl)
+
+
+文章目录相关代码参考自[http://www.ituring.com.cn/article/199624](http://www.ituring.com.cn/article/199624)
+
+
+## 添加评论系统
+### 一、注册Disqus
+* 在Disqus上注册账号
+* 注册完成后，选择universal code创建新站点后，会获得一串脚本代码，参考如下
+```
+<div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//your_short_name.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+```
+
+### 二、添加评论
+* 找到`layout/_partial/comment.js`目录
+* 将上述代码添加到comment.js尾部即可
