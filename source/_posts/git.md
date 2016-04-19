@@ -206,3 +206,5 @@ git config --global alias.unstage 'reset HEAD'
 2、配置别名文件
 * 不加`--global`，则配置位于当前仓库的`.git/config`文件中
 * 加了`--global`，则配置位于用户主目录的隐藏文件`.gitconfig`中
+
+> 以上部分内容参考总结自[《廖雪峰的git教程》](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/)
