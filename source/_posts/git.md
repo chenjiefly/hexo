@@ -17,3 +17,8 @@ categories:
 # <file>为文件名（全路径）
 git checkout -- <file>
 ```
+
+
+## git 技巧
+
+### 一、
