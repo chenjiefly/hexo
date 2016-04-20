@@ -194,3 +194,22 @@ s.setAttribute('data-timestamp', +new Date());
 ### 二、添加评论
 * 找到`layout/_partial/comment.js`目录
 * 将上述代码添加到comment.js尾部即可
+
+
+## 个性化
+### 一、更换网站图标
+1、找到图标修改文件路径
+`hexo\themes\hexo-theme-transparent\layout\_partial\head.ejs`
+
+2、找到网站图标代码
+```
+## 可以是.ico也可以是.png
+<link href="<%- config.root %>favicon.ico" rel="icon">
+```
+
+3、制作icon
+* 可使用[比特虫](http://www.bitbug.net/)网站制作
+
+4、网站图标icon添加到工程
+* 将图标文件放到`hexo\source`目录下，与`_posts`平级
+* 执行`hexo g`命令后会自动将该图标拷贝到public目录下
