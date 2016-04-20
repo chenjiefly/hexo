@@ -10,7 +10,7 @@
       <% } %>
       <%- partial('post/title') %>
     </header>
-    <% if (index == false || rank == 0){ %>
+    <% if (index == false || rank < 3){ %>
       <div class="entry">
         <% if (item.excerpt && index){ %>
           <%- item.excerpt %>

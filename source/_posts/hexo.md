@@ -213,3 +213,8 @@ s.setAttribute('data-timestamp', +new Date());
 4、网站图标icon添加到工程
 * 将图标文件放到`hexo\source`目录下，与`_posts`平级
 * 执行`hexo g`命令后会自动将该图标拷贝到public目录下
+
+### 二、简化首页
+1、前三篇文章全部显示
+
+2、其他文章显示标题
