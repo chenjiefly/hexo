@@ -10,15 +10,17 @@
       <% } %>
       <%- partial('post/title') %>
     </header>
-    <div class="entry">
-      <% if (item.excerpt && index){ %>
-        <%- item.excerpt %>
-      <% } else { if (!index && item.toc !== false) {%>
-        <%- partial('post/toc') %>
-      <% } %>
-        <%- item.content %>
-      <% } %>
-    </div>
+    <% if (index == false || rank == 0){ %>
+      <div class="entry">
+        <% if (item.excerpt && index){ %>
+          <%- item.excerpt %>
+        <% } else { if (!index && item.toc !== false) {%>
+          <%- partial('post/toc') %>
+        <% } %>
+          <%- item.content %>
+        <% } %>
+      </div>
+    <% } %>
     <footer>
       <% if (index){ %>
         <% if (item.excerpt){ %>

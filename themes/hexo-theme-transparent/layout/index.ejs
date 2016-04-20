@@ -1,5 +1,5 @@
-<% page.posts.each(function(item){ %>
-  <%- partial('_partial/article', {item: item, index: true}) %>
+<% page.posts.each(function(item, rank){ %>
+  <%- partial('_partial/article', {item: item, index: true, rank: rank}) %>
 <% }); %>
 
 <%- partial('_partial/pagination') %>
