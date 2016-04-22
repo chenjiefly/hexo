@@ -247,11 +247,34 @@ s.setAttribute('data-timestamp', +new Date());
 * 将图标文件放到`hexo\source`目录下，与`_posts`平级
 * 执行`hexo g`命令后会自动将该图标拷贝到public目录下
 
-### 二、首页文章显示摘要
+### 三、首页文章显示摘要
 1、默认情况
 * 默认情况下博客首页会显示每一篇文章的全部内容，这样比较影响阅读
 
 2、首页文章只显示摘要和更多
 * 只要在文章中添加摘要，那么在首页文章就不会显示全文，而是只显示摘要内容和更多内容按钮
+* `<!--more-->`的前面是摘要，后面的内容是正文
 
+### 四、访问统计
+1、百度统计
+* 在`hexo\themes\your_theme\_config.yml`中添加配置项`baidu_tongji: true`
+* 在`hexo\themes\your_theme\layout\_partial\`中新建文件`baidu_tongji.ejs`，内容如下
+
+```
+<% if (theme.baidu_tongji){ %>
+<script type="text/javascript">
+# 注册百度统计后获得的统计代码
+</script>
+<% } %>
+```
+
+* 到[http://tongji.baidu.com/](http://tongji.baidu.com/)上注册百度统计
+
+* 在`hexo\themes\your_theme\layout\_partial\head.ejs`中的`</head>`前添加下面代码
+
+```
+<%- partial('baidu_tongji') %>
+`
+
+2、不蒜子——站内访问统计
 

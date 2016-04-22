@@ -36,5 +36,6 @@ facebook:
   comment_width: 840
   comment_colorscheme: light
 
-# 百度统计
-baidu_tongji: true
+# 访问统计
+baidu_tongji: true  # 百度统计
+busuanzi: false  # 不蒜子，站内统计，还在内测中。。。
