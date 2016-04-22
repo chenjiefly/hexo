@@ -10,22 +10,20 @@
       <% } %>
       <%- partial('post/title') %>
     </header>
-    <% if (index == false || rank < 3){ %>
-      <div class="entry">
-        <% if (item.excerpt && index){ %>
-          <%- item.excerpt %>
-        <% } else { if (!index && item.toc !== false) {%>
-          <%- partial('post/toc') %>
-        <% } %>
-          <%- item.content %>
-        <% } %>
-      </div>
-    <% } %>
+    <div class="entry">
+      <% if (item.excerpt && index){ %>
+        <%- item.excerpt %>
+      <% } else { if (!index && item.toc !== false) {%>
+        <%- partial('post/toc') %>
+      <% } %>
+        <%- item.content %>
+      <% } %>
+    </div>
     <footer>
       <% if (index){ %>
         <% if (item.excerpt){ %>
-          <div class="alignleft">
-            <a href="<%- config.root %><%- item.path %>#more" class="more-link"><%= theme.excerpt_link %></a>
+          <div class="alignright">
+            <a href="<%- config.root %><%- item.path %>#content" class="more-link"><%= theme.excerpt_link %></a>
           </div>
         <% } %>
         <% if (item.comment && config.disqus_shortname){ %>

@@ -1,11 +1,20 @@
 ---
-title: 提效工具
+title: 开发软件和工具
 date: 2016-04-20 10:21:45
 tags:
-- 提效
+- tools
+- software
 categories:
 - 工具
+photos:
+- 
+description: 
 ---
+
+* 程序开发调试软件和工具
+* 提效软件和工具
+
+<!--more-->
 
 ## 工作流
 ### 搜索查询工具

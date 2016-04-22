@@ -5,7 +5,16 @@ tags:
 - hexo
 categories:
 - 博客
+photos:
+- 
+description: 记录使用hexo博客系统，在github上搭建个人博客
 ---
+
+* 使用hexo博客系统在github上搭建个人博客
+* 改造了`hexo-theme-transparent`主题
+* 记录了搭建和改造主题过程遇到的问题
+
+<!--more-->
 
 ## 搭建hexo个人博客
 
@@ -71,6 +80,29 @@ hexo s  # 简写命令
 ```
 hexo new "文章名"
 hexo n  # 简写命令
+```
+
+* 文章脚手架
+  * 模板在`hexo\scaffolds`下的md文件
+  * 新建脚手架模板文件后，可以执行`hexo new 脚手架名 "文章名"`来使用新脚手架来新建文章
+
+2、 文章结构
+```
+---
+title: {{ title }}
+date: {{ date }}
+tags:
+- 标签
+categories:
+- 分类
+photos:
+- fancybox图片地址，效果可参考http://ibruce.info/reading/
+description: 本文描述
+---
+
+上面的文章信息和下面的<!--more-->之间的内容是摘要，只要有摘要，在首页的文章就不会显示全文内容
+<!--more-->
+以下是文章正文
 ```
 
 2、生成静态网页
@@ -215,21 +247,11 @@ s.setAttribute('data-timestamp', +new Date());
 * 将图标文件放到`hexo\source`目录下，与`_posts`平级
 * 执行`hexo g`命令后会自动将该图标拷贝到public目录下
 
-### 二、简化首页
-1、前三篇文章全部显示
+### 二、首页文章显示摘要
+1、默认情况
+* 默认情况下博客首页会显示每一篇文章的全部内容，这样比较影响阅读
 
-2、其他文章显示标题
+2、首页文章只显示摘要和更多
+* 只要在文章中添加摘要，那么在首页文章就不会显示全文，而是只显示摘要内容和更多内容按钮
 
 
-```css
-.hexo {
-  height: auto;
-}
-```
-
-```javascript
-var a = 1;
-function hello() {
-  alert('1jksdjf');  // zhushi
-}
-```

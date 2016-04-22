@@ -5,7 +5,17 @@ tags:
 - gitbook
 categories:
 - 工具
+photos:
+- 
+description: gitbook使用方法
 ---
+
+
+* gitbook本地环境搭建，初始化、编译和启动本地服务
+* 记录使用过程中遇到的问题
+
+<!--more-->
+
 
 ## 本地环境搭建
 

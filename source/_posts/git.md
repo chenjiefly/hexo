@@ -5,7 +5,15 @@ tags:
 - git
 categories:
 - 工具
+photos:
+- 
+description: git常用方法和技巧整理归纳
 ---
+
+* git常用方法和技巧整理归纳
+
+<!--more-->
+
 
 ## .gitconfig 配置
 
