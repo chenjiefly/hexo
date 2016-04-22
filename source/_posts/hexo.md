@@ -166,6 +166,7 @@ str是文章内容，options有两个参数，一个是class，也就是html标�
 ### 一、注册Disqus
 * 在Disqus上注册账号
 * 注册完成后，选择universal code创建新站点后，会获得一串脚本代码，参考如下
+
 ```
 <div id="disqus_thread"></div>
 <script>
@@ -203,7 +204,7 @@ s.setAttribute('data-timestamp', +new Date());
 
 2、找到网站图标代码
 ```
-## 可以是.ico也可以是.png
+// 可以是.ico也可以是.png
 <link href="<%- config.root %>favicon.ico" rel="icon">
 ```
 
@@ -218,3 +219,17 @@ s.setAttribute('data-timestamp', +new Date());
 1、前三篇文章全部显示
 
 2、其他文章显示标题
+
+
+```css
+.hexo {
+  height: auto;
+}
+```
+
+```javascript
+var a = 1;
+function hello() {
+  alert('1jksdjf');  // zhushi
+}
+```
