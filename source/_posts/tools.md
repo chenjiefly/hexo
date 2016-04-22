@@ -14,6 +14,8 @@ description:
 * 程序开发调试软件和工具
 * 提效软件和工具
 
+{% asset_img logo.jpg 图片来源：baidu %}
+
 <!--more-->
 
 ## 工作流

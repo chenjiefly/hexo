@@ -12,7 +12,7 @@ description: git常用方法和技巧整理归纳
 
 * git常用方法和技巧整理归纳
 
-{% asset_img logo.jpg 图片来源：谷歌图片 %}
+{% asset_img logo.png 图片来源：bing %}
 
 <!--more-->
 

@@ -14,7 +14,7 @@ description: 记录使用hexo博客系统，在github上搭建个人博客
 * 改造了`hexo-theme-transparent`主题
 * 记录了搭建和改造主题过程遇到的问题
 
-{% asset_img logo.png 图片来源：谷歌图片 %}
+{% asset_img logo.png 图片来源：baidu %}
 
 <!--more-->
 
