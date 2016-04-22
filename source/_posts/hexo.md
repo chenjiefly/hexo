@@ -20,7 +20,7 @@ description: 记录使用hexo博客系统，在github上搭建个人博客
 
 ### 一、官网
 
-官网地址：[https://hexo.io/](https://hexo.io/)
+官网地址：[https://hexo.io/zh-cn/](https://hexo.io/zh-cn/)
 
 ### 二、本地环境
 1、安装基本环境

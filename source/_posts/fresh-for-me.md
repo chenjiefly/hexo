@@ -19,11 +19,21 @@ description: 从论坛、博客和技术首页等网站获取
 
 ### 技术
 
-1、Lazyr.js
-* 延迟加载图片
+1、JS
 
-2、Space.js
-* HTML驱动的页面3D滚动效果
+* Lazyr.js
+    * 延迟加载图片
+
+* Space.js
+    * HTML驱动的页面3D滚动效果
+
+* React
+
+2、CSS
+* flex布局
+
+3、HTML
+* web标准，HTML5，语义化
 
 ### 工具
 1、micro
