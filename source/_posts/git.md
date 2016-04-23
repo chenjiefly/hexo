@@ -86,10 +86,19 @@ git reset HEAD <file>
 * 执行了`git commit`后，修改内容被提交到版本库，产生了新的版本hash值
 * 回到某一个历史版本
 ```
-git reset --hard HEAD^
-git reset --hard hash
-```
+# working copy：工作区
+# stage/index：暂存区
+# Repository：版本库
+# HEAD：当前分支版本顶端的指针，也就是在当前分支最近的一次commit提交
 
+git reset --soft HEAD^   # HEAD恢复为上一个版本，相当于撤销了commit操作
+git reset HEAD^          # 默认同--mixed
+git reset --mixed HEAD^  # HEAD、暂存区恢复为上一个版本，相当于撤销了commit和add两个操作
+git reset --hard hash    # HEAD、暂存区、工作区全部恢复为hash对应的版本，相当于撤销了commit、add和文件修改三个操作
+```
+* 注意
+    * git reset --hard是非常危险的操作，会导致最近一次add、commit后的内容全部丢失
+    * 如果是误操作，可以使用`git reflog`查找命令执行历史记录，找到想要回退的版本号
 
 ### 二、关联远程仓库和首次提交
 1、关联远程仓库
