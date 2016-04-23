@@ -1,5 +1,5 @@
 ---
-title: What is fresh for me!
+title: 每一次都是新的开始!
 date: 2016-04-20 10:01:45
 tags:
 - fresh
@@ -12,6 +12,9 @@ description: 从论坛、博客和技术首页等网站获取
 
 * 从论坛、博客和技术首页等途径获取到新的技术、工具或思维方式
 * 先记录在此处，待有时间仔细深入
+
+
+{% asset_img logo.png 图片来源：bing %}
 
 <!--more-->
 
