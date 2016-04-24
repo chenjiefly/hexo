@@ -7,6 +7,7 @@ categories:
 - 
 photos:
 - fancybox图片地址
+mathjax: false
 description: 文章描述
 ---
 

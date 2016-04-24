@@ -8,6 +8,7 @@ categories:
   - Javascript
 photos:
   - 
+mathjax: true
 description: Canvas学习笔记
 date: 2016-04-24 22:23:53
 ---
@@ -96,7 +97,6 @@ date: 2016-04-24 22:23:53
         |  0  0  1 |    |    0       0       0     |    -- 这一行不能修改
          --      --      --                      --
         ```
-
         * 该矩阵默认值是3阶单位矩阵
         * context.transform(a, b, c, d, e, f)
         * **使用变换矩阵进行旋转是倾斜和缩放的组合效果**，参看例子，只需要一个角度值就可以旋转
@@ -163,16 +163,20 @@ date: 2016-04-24 22:23:53
         * 返回一个2D渲染上下文的ImageData对象，该对象包含三个属性，宽、高和区域全部像素数组CanvasPixelArray
         * CanvasPixelArray是一个JS一维数组，每个像素用4个整数值表示，范围0~255，分别表示rgba
         * 精确访问数组中像素的公式
-            * pixelRed = ((y - 1) * (width * 4)) + ((x - 1) * 4)
-            * pixelGreen = pixelRed + 1
-            * pixelBlue  = pixelRed + 2
-            * pixelAlpha = pixelRed + 3
+            * $pixelRed = (y - 1) × (width × 4) + (x - 1) × 4$
+            * $pixelGreen = pixelRed + 1$
+            * $pixelBlue  = pixelRed + 2$
+            * $pixelAlpha = pixelRed + 3$
     * 创建像素值
         * 方法：createImageData(width, height, data)
     * 绘制图像
         * 方法：inputImageData(data, x, y)，x和y为相对于画布原点的坐标
         * 翻转颜色：255-当前颜色值
-        * 灰度：grey = (r + g + b) / 3
+        * 灰度
+            \begin{aligned} 
+            grey=\frac{r + g + b}{3}
+            \end{aligned}
+
     * 像素化
         * 取图像中对应点的颜色，并在该点上绘制该颜色的矩形、圆形等图案
 * 处理HTML5视频
@@ -195,8 +199,8 @@ date: 2016-04-24 22:23:53
         * 在每次循环开始前更改形状的属性
     * 圆周运动
         * 坐标(x, y)、圆半径(r)和偏移角度(a)的关系式
-            * x = r * Math.cos(a)
-            * y = r * Math.sin(a)
+            * $x = r × Math.cos(a)$
+            * $y = r × Math.sin(a)$
         * 圆周运动的原点位于当前坐标点左侧r个像素处
     * 反弹运动
         * 判断形状的坐标是否到达边界坐标，若到达则反向运动即可

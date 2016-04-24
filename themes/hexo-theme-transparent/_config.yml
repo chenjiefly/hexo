@@ -40,3 +40,7 @@ facebook:
 # 访问统计
 baidu_tongji: true  # 百度统计
 busuanzi: false  # 不蒜子，站内统计，还在内测中。。。
+
+# 插件
+plugins:
+- hexo-math
