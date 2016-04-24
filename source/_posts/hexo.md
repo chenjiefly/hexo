@@ -199,7 +199,7 @@ str是文章内容，options有两个参数，一个是class，也就是html标�
 ## 添加评论系统
 ### 一、注册Disqus
 * 在Disqus上注册账号
-* 注册完成后，选择universal code创建新站点后，会获得一串脚本代码，参考如下
+* 注册完成后，选择universal code创建新站点后，会获得一串脚本代码（下面的添加评论方法一：手动添加中会用到），参考如下
 
 ```
 <div id="disqus_thread"></div>
@@ -227,8 +227,19 @@ s.setAttribute('data-timestamp', +new Date());
 ```
 
 ### 二、添加评论
+1、方法一：手动添加
 * 找到`layout/_partial/comment.js`目录
 * 将上述代码添加到comment.js尾部即可
+* 此方法可以在首页置顶文章尾部和每篇文章详情页尾部添加评论框
+
+2、方法二：hexo配置
+* 直接在hexo的根目录配置文件中添加配置项
+
+```
+disqus_shortname: your_short_name
+```
+
+* 此方法可以在每篇文章详情页尾部添加评论框，但是在首页置顶文章的评论框无法显示
 
 
 ## 个性化

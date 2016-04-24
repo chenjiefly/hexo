@@ -75,4 +75,4 @@ deploy:
   branch: master
 
 # comment
-# disqus_shortname: chenjiefly
+disqus_shortname: chenjiefly
