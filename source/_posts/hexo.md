@@ -291,3 +291,16 @@ disqus_shortname: your_short_name
 
 2、不蒜子——站内访问统计
 
+### 四、markdown显示优化
+1、表格线优化
+* 在`themes/your_theme/source/css/_partial/article.styl`文件内的`.entry`选择器下添加表格如下样式
+* 下面样式可以将表格显示为1px的实线框，且100%拉伸显示
+
+```
+table
+  width 100%
+  border-collapse collapse
+
+  th, td
+    border 1px solid white
+```
