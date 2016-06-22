@@ -3,7 +3,7 @@ title: Three.js学习笔记
 tags:
   - threejs
 categories:
-  - javascript
+  - Javascript
 photos:
   - 
 mathjax: false
