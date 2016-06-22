@@ -2,11 +2,11 @@
 title: git
 date: 2016-04-19 14:52:01
 tags:
-- git
+  - git
 categories:
-- 工具
+  - 工具
 photos:
-- 
+  - 
 description: git常用方法和技巧整理归纳
 ---
 

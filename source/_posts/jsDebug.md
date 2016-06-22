@@ -1,11 +1,9 @@
 ---
 title: 前端JS调试技巧
 tags:
-  - Javascript
   - debug
 categories:
   - Javascript
-  - debug
 photos:
   - 
 mathjax: false

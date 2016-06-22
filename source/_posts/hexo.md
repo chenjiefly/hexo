@@ -2,11 +2,11 @@
 title: 搭建hexo + github 个人博客
 date: 2016-04-14 13:44:29
 tags: 
-- hexo
+  - hexo
 categories:
-- 博客
+  - 博客
 photos:
-- 
+  - 
 description: 记录使用hexo博客系统，在github上搭建个人博客
 ---
 

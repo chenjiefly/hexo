@@ -2,10 +2,8 @@
 title: Three.js学习笔记
 tags:
   - threejs
-  - javascript
 categories:
   - javascript
-  - 技术
 photos:
   - 
 mathjax: false

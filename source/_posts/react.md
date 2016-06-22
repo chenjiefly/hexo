@@ -2,9 +2,7 @@
 title: React.js
 tags:
   - react
-  - Javascript
 categories:
-  - 技术
   - Javascript
 photos:
   - 

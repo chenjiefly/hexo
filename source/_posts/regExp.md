@@ -1,10 +1,8 @@
 ---
 title: 正则表达式RegExp
 tags:
-  - Javascript
-  - RegExp
+  - regExp
 categories:
-  - 技术
   - Javascript
 photos:
   - 

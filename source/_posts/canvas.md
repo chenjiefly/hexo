@@ -2,9 +2,7 @@
 title: Canvas
 tags:
   - Canvas
-  - Javascript
 categories:
-  - 技术
   - Javascript
 photos:
   - 

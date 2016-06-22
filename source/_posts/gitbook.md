@@ -2,11 +2,11 @@
 title: gitbook
 date: 2016-04-19 20:52:41
 tags:
-- gitbook
+  - gitbook
 categories:
-- 工具
+  - 工具
 photos:
-- 
+  - 
 description: gitbook使用方法
 ---
 

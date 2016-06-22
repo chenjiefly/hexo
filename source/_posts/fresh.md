@@ -2,11 +2,11 @@
 title: 每一次都是新的开始!
 date: 2016-04-20 10:01:45
 tags:
-- fresh
+  - fresh
 categories:
-- 技术
+  - 技术
 photos:
-- 
+  - 
 description: 从论坛、博客和技术首页等网站获取
 ---
 
