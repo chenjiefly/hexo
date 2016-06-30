@@ -253,7 +253,7 @@ var JQ = $.noConflict(true);  // 放弃jQuery
 
 * window.onload = function() {}
     * 需要等DOM和资源文件都加载完成才执行JS
-    * 如`<img src=""/>
+    * 如`<img src=""/>`
 
 * $(function() {})
     * 只要DOM加载完就执行JS
@@ -303,9 +303,87 @@ $(document).on('ready', function() {});
     * 系统自带的对象，如`window.location`要排除在外，利用只有对象字面量的`constructor.prototype`才会有`isPrototypeOf`真这个原理
 * isEmptyObject(): 空对象判断
 * error(): 抛出异常
+* parseJSON(): JSON.parse()
+* each(): 遍历集合，数组、对象、类数组对象
+* trim(): 去除字符串前后空格
+* inArray(): 判断入参元素是否存在于数组中，数组版的indexOf
 
 8、parseHTML()
 
 * keepScripts
     * 作用是如果HTML片段中有script标签，那么如果该值为true，则script标签中的代码会被执行
-    
+* 单标签`<li></li>`
+    * 使用`context.createElement( parsed[1] )`生成节点
+* 多标签   `<li></li><script></script>`
+    * 使用`jQuery.buildFragment( [ data ], context, scripts )` 
+
+9、parseXML()
+
+* 解析XML格式数据
+
+```
+var tmp = new DOMParser(),  // IE8以下不支持
+    xml = tmp.parseFromString( data , "text/xml" );  // data是XML对象字串
+```
+
+10、noop()
+
+* 空函数，做插件和组件开发时可作为默认参数
+
+```
+function aaa() {
+    this.default = {
+        show: function() {}  // 可用$.noop代替
+    }
+}
+```
+
+11、globalEval()
+
+* 全局解析JS，严格模式下采用创建`<script>`标签插入页面中的方法实现，一般模式下直接使用`eval`解析
+* `eval`和`window.eval`的区别
+    * `eval`是关键字，声明的变量局部有效，并不能为全局变量
+    * `window.eval`是方法，可以解析为全局变量
+
+12、camelCase()
+
+* 转驼峰方法（内部使用），如margin-top转换为marginTop
+* 注意`-ms-opacity`会先转为`ms-opacity`，再转换为`MsOpacity`
+
+13、nodeName()
+
+* 是否为指定节点名（内部使用）
+* 名字对比时，需要转换为小写，因为在不同浏览器下节点名称可能大小写不统一
+
+14、makeArray()
+
+* 类数组转换为真数组（有第二个参数result，那就是内部使用的）
+* 字符串、数字等都可以转成数组
+
+15、merge()
+
+* 合并数组
+
+```
+$.merge(['a', 'b'], ['c', 'd'])
+```
+
+* 合并特殊json对象
+
+```
+$.merge(['a', 'b'], {0: 'c', 1: 'd', length})
+$.merge({0: 'c', 1: 'd', length: 2}, ['a', 'b'])
+$.merge({0: 'a', 1: 'b', length: 2}, {0: 'c', 1: 'd', length})
+```
+
+16、grep()
+
+* 过滤新数组
+* `grep: function( elems, callback, inv ){...}`
+    * elems为数组
+    * callback为过滤方法，返回true或false
+    * inv决定返回callback返回的值为真或假时对应的元素，取非
+
+
+
+
