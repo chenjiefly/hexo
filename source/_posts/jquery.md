@@ -240,9 +240,9 @@ $.extend(true, {}, {name: 'hello'}, {age: '20'});
 * 每一个jquery对象在页面中的唯一标识
 * 主要作用是作为映射关系的键
 
-2、noConflict 防冲突方法
+2、noConflict()
 
-* 防止加载jquery.js库前，$和jQuery就已经被占用
+* 防冲突方法，防止加载jquery.js库前，$和jQuery就已经被占用
 
 ```
 var jq = $.noConflict();  // 放弃$
@@ -258,4 +258,54 @@ var JQ = $.noConflict(true);  // 放弃jQuery
 * $(function() {})
     * 只要DOM加载完就执行JS
     * 不需要等图片加载完成，速度比window.onload快
-    * `$(function() {})  =>  $(document).ready()  =>  $().ready()  => $.fn.ready  => jQuery.ready.promise().done( fn )`
+    * `$(function() {})  =>  $(document).ready()  =>  $().ready()  => $.fn.ready()  => jQuery.ready.promise().done( fn )  =>  $.ready()`
+
+4、readyWait
+
+* 推迟DOM ready的变量锁
+* 可能会为了等很多文件，所以该变量锁是一个计数器
+
+5、holdReady()
+
+* DOM 推迟 ready
+
+* 写法
+
+```
+$.holdReady(true)   // 推迟一次，jQuery.readyWait++
+$.holdReady(false)  // 释放推迟一次，--jQuery.readyWait
+```
+
+* 作用：异步加载文件要先执行，然后才执行DOM加载完成后的方法
+
+6、ready()
+
+* DOM ready的三种写法
+
+```
+$(function() {});
+$(document).ready(function() {});
+$(document).on('ready', function() {});
+```
+
+7、简单工具方法
+
+* isFunction()：判断是否为函数
+    * 低版本IE浏览器下，alert等原生函数返回的结果是`Object`，可参考bug#2968
+* isArray()：判断是否为数组
+    * jquery@2.0.3不支持IE6、7、8，所以该方法直接用原生的，速度快
+* isWindow()：判断是否为window对象
+    * obj != null 的作用是为了防止假值之间的判断，因为undefined == null为真
+    * obj === obj.window 的判断实现，因为只有window对象下才会有window
+* isNumeric()：判断是否为数字
+* isPlainObject()： 判断是否为对象字面量
+    * DOM节点和`window`排除在对象字面量外
+    * 系统自带的对象，如`window.location`要排除在外，利用只有对象字面量的`constructor.prototype`才会有`isPrototypeOf`真这个原理
+* isEmptyObject(): 空对象判断
+* error(): 抛出异常
+
+8、parseHTML()
+
+* keepScripts
+    * 作用是如果HTML片段中有script标签，那么如果该值为true，则script标签中的代码会被执行
+    

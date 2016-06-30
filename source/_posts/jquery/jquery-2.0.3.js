@@ -425,6 +425,8 @@ jQuery.extend({
 		}
 
 		// If there are functions bound, to execute
+		// readyList是延迟加载对象
+		// jQuery(function($) {})，回调方法里的this设置为document，参数为jQuery
 		readyList.resolveWith( document, [ jQuery ] );
 
 		// Trigger any bound ready events
@@ -456,8 +458,8 @@ jQuery.extend({
 		}
 		// Support: Safari <= 5.1 (functionish RegExp)
 		return typeof obj === "object" || typeof obj === "function" ?
-			class2type[ core_toString.call(obj) ] || "object" :
-			typeof obj;
+			class2type[ core_toString.call(obj) ] || "object" :  // 复杂类型
+			typeof obj;  // 基本类型
 	},
 
 	isPlainObject: function( obj ) {
@@ -475,7 +477,7 @@ jQuery.extend({
 		// https://bugzilla.mozilla.org/show_bug.cgi?id=814622
 		try {
 			if ( obj.constructor &&
-					!core_hasOwn.call( obj.constructor.prototype, "isPrototypeOf" ) ) {
+					!core_hasOwn.call( obj.constructor.prototype, "isPrototypeOf" ) ) {  // 只有对象字面量的原型才会返回真，再取反
 				return false;
 			}
 		} catch ( e ) {
