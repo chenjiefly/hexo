@@ -167,3 +167,95 @@ jQuery.fn = jQuery.prototype = {
     splice(): 数组截取、删除和添加方法
 }
 ```
+
+------
+
+
+### (285, 347) extend : jQuery的继承方法
+
+1、扩展功能的方法extend实现
+
+* jQuery.extend = jQuery.fn.extend = function() {}
+    * 工具和插件扩展方法extend的具体实现
+    * 使用jQuery.extend扩展的是工具方法
+    * 使用jQuery.fn.extend扩展的是对象插件
+
+* 当写一个对象字面量时，实际是扩展工具或对象插件
+
+```
+// 扩展jquery插件工具方法，调用方法为：$.aaa()和$.bbb()
+// $.extend();  ->  this  -> $  -> this.aaa  -> $.aaa()
+$.extend({
+    aaa: function() {
+        ...
+    },
+    bbb: function() {
+        ...
+    }
+});
+
+// 扩展jquery对象实例方法，调用方法为：$().aaa()和$().bbb()
+// $.fn.extend();  ->  this  -> $.fn  ->  $.prototype  -> this.aaa  -> $().aaa()
+$.fn.extend({
+    aaa: function() {
+        ...
+    },
+    bbb: function() {
+        ...
+    }
+});
+```
+
+
+* 当写多个对象字面量时，实际是对象拷贝操作，后面的对象全都扩展到第一个对象上
+
+```
+var a = {};
+$.extend({}, {name: 'hello'}, {age: '20'});
+```
+
+2、浅拷贝和深拷贝
+
+```
+// 默认浅拷贝
+$.extend({}, {name: 'hello'}, {age: '20'});
+
+// 深拷贝
+$.extend(true, {}, {name: 'hello'}, {age: '20'});
+```
+
+3、继承的方式
+
+* jQuery中的拷贝继承
+    * 将目标对象中没有的属性从源对象中拷贝到目标对象上
+* JS中的类式继承
+    * 针对的是new 构造函数
+* JS中的原型继承
+    * 利用prototype来继承
+
+### (349, 817) jQuery.extend() : 扩展一些工具方法
+
+1、expando
+
+* 每一个jquery对象在页面中的唯一标识
+* 主要作用是作为映射关系的键
+
+2、noConflict 防冲突方法
+
+* 防止加载jquery.js库前，$和jQuery就已经被占用
+
+```
+var jq = $.noConflict();  // 放弃$
+var JQ = $.noConflict(true);  // 放弃jQuery
+```
+
+3、isReady
+
+* window.onload = function() {}
+    * 需要等DOM和资源文件都加载完成才执行JS
+    * 如`<img src=""/>
+
+* $(function() {})
+    * 只要DOM加载完就执行JS
+    * 不需要等图片加载完成，速度比window.onload快
+    * `$(function() {})  =>  $(document).ready()  =>  $().ready()  => $.fn.ready  => jQuery.ready.promise().done( fn )`
