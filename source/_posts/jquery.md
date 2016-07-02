@@ -233,6 +233,10 @@ $.extend(true, {}, {name: 'hello'}, {age: '20'});
 * JS中的原型继承
     * 利用prototype来继承
 
+
+------
+
+
 ### (349, 817) jQuery.extend() : 扩展一些工具方法
 
 1、expando
@@ -307,6 +311,8 @@ $(document).on('ready', function() {});
 * each(): 遍历集合，数组、对象、类数组对象
 * trim(): 去除字符串前后空格
 * inArray(): 判断入参元素是否存在于数组中，数组版的indexOf
+* map(): 映射新数组
+* now(): 获取当前时间，即Date.now()方法
 
 8、parseHTML()
 
@@ -382,8 +388,108 @@ $.merge({0: 'a', 1: 'b', length: 2}, {0: 'c', 1: 'd', length})
 * `grep: function( elems, callback, inv ){...}`
     * elems为数组
     * callback为过滤方法，返回true或false
-    * inv决定返回callback返回的值为真或假时对应的元素，取非
+    * inv决定返回callback返回的值为真或假时对应的元素，相当于集合取反
+
+17、guid
+
+* jquery内部的唯一标识符，可以累加
+* 与事件操作有关系，将事件操作和回调方法关联起来
+
+18、proxy()
+
+* jquery中改变方法内部this指向的方法
+
+```
+function show(x, y) {
+    console.log(x);
+    console.log(y);
+}
+
+// 返回的是一个方法，还不能执行
+$.proxy(fn, context)
+
+// 这样就能执行了
+$.proxy(fn, context)()
+
+// 传参数
+$.proxy(fn, context, x0, y0)()  // 不触发方法时的传参
+$.proxy(fn, context)(x0, y0)    // 直接执行方法时的传参
+
+// 简化写法，改变对象内方法中的this指向
+var obj = {
+    show: function() {
+        console.log(this);
+    }
+}
+
+$(document).click($.proxy(obj.show, obj));  // 普通写法
+$(document).click($.proxy(obj, 'show'));    // 简化写法
+
+```
+
+19、access()
+
+* 多功能值操作（内部使用）
+* 用于适应$().css()、$().attr()等get/set方法的公用方法
+* 参数
+    * elems : 元素集合
+    * fn : 回调函数，用于css()、attr()这些方法的个性化处理
+    * key : css()、attr()设置参数对象的key
+    * value : key对应的值
+    * chainable : 决定设置（true）还是获取（false）操作
+    * emptyGet : 获取操作情况下，当匹配到的集合为空时，获取的值
+    * raw : 传入的value是否为方法，true表示不是方法是对象
+
+20、swap()
+
+* 交换元素的style属性
+* 场景
+    * `$().width()`可以获取到设置了`display:none;`的元素的宽度
+    * `$().get(0).offsetWidth`获取不到设置为`display:none;`的元素的宽度
+    * jquery实现`width()`方法功能就是利用了`swap()`方法
+* 原理
+    * 先保存原来的`display:none;`存起来
+    * 然后设置元素样式为`display:block;visibility: hidden;position: absolute;`
+    * 于是就可以使用`$().get(0).offsetWidth`获取宽度
+    * 最后将设置的样式恢复为原来保存的即可
+
+
+------
+
+
+### ( 877, 2856) Sizzle : 复杂选择器的实现，是独立模块，如果其他应用开发中需要用到选择器，可单独下载这个模块
 
 
 
 
+
+------
+
+
+### (2880, 3042) Callbacks : 回调对象，对函数的统一管理
+1、功能
+
+* 用于管理一系列的回调函数列表，在内部使用时为`$.ajax()`和`$.Deferred()`提供基本功能模块
+* 用于可以实现统一触发一批不同作用域下的函数
+
+2、方法
+
+```
+var cb = $.Callbacks();
+
+cb.add(fn1);     // 相当于绑定事件
+cb.add(fn2);
+cb.fire();       // 相当于触发事件，一旦触发连续执行fn1和fn2
+cb.remove(fn1);  // 相当于移除事件
+
+```
+
+3、 `$.Callbacks()`方法入参
+
+* once
+    * 
+* memory
+
+* unique
+
+* stopOnFalse
