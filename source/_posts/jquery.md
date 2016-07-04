@@ -1,5 +1,5 @@
 ---
-title: jquery
+title: jquery源码分析
 tags:
   - jquery
 categories:
@@ -484,12 +484,79 @@ cb.remove(fn1);  // 相当于移除事件
 
 ```
 
-3、 `$.Callbacks()`方法入参
+3、 `$.Callbacks(options)`方法入参
 
 * once
-    * 
+    * 确保添加的方法只能被执行一次，`$.Callbacks('once')`
 * memory
+    * 记忆功能，`fire()`方法前后通过`add()`添加的方法都会被调用
+
+```
+var cb = $.Callbacks('memory');
+
+cb.add(fn1);  // fn1和fn2都会被调用执行
+cb.fire();
+cb.add(fn2);
+```
 
 * unique
+    * 确保一个方法只能被添加一次
+
+```
+var cb = $.Callbacks('unique');
+
+cb.add(fn);  // fn值会被调用执行一次
+cb.add(fn);
+cb.fire();
+```
 
 * stopOnFalse
+    * 当callback方法返回false时，中断后续callback的调用
+
+```
+var cb = $.Callbacks('stopOnFalse');
+
+function aaa() {return 1;}
+function bbb() {return false;}
+function ccc() {return 1;}
+
+cb.add(aaa);  // ccc()不会被调用，因为bbb()返回了false
+cb.add(bbb);
+cb.add(ccc);
+cb.fire();
+```
+
+4、组合参数
+
+* Callbacks方法：`$.Callbacks('once memory unique stopOnFalse');`
+* add方法：同时添加多个方法，`cb.add(fn1, fn2);`、`cb.add([fn1, fn2]);`
+
+5、`firing`参数作用
+
+* 当fire()方法在回调方法里执行时，可能会出现死循环的情况
+
+```
+function aaa() {
+    alert('1');
+    cb.fire();  // 如果不做处理就会变成持续执行aaa()的死循环
+}
+
+function bbb() {
+    alert('2');
+}
+
+cb.fire();
+```
+
+
+
+------
+
+
+### (3043, 3183) Deferred : 延迟对象，对异步操作的统一管理
+1、功能
+
+
+
+
+
