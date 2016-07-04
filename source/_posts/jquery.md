@@ -20,8 +20,11 @@ date: 2016-06-27 16:01:03
 
 ## jquery源码分析
 
-### CDN代码
-[jquery-2.0.3.js](https://code.jquery.com/jquery-2.0.3.js)
+### jquery源码地址
+[CDN上的源码](https://code.jquery.com/jquery-2.0.3.js)
+{% asset_link jquery-2.0.3.JS 带注释笔记的jquery源码 %}
+
+
 
 
 ------
@@ -489,7 +492,8 @@ cb.remove(fn1);  // 相当于移除事件
 * once
     * 确保添加的方法只能被执行一次，`$.Callbacks('once')`
 * memory
-    * 记忆功能，`fire()`方法前后通过`add()`添加的方法都会被调用
+    * 记忆功能，`fire()`方法将会触发位于该方法前后的通过`add()`添加的方法
+    * 实际实现的方法其实就是允许在memory存在的情况下，`add()`中也允许调用`fire()`
 
 ```
 var cb = $.Callbacks('memory');
@@ -556,6 +560,98 @@ cb.fire();
 ### (3043, 3183) Deferred : 延迟对象，对异步操作的统一管理
 1、功能
 
+* 延迟对象是基于`$.Callbacks`对象
+
+```Javascript
+jQuery.extend({
+    Deferred: function() {},
+    when: function() {}   // Deferred的辅助
+})
+```
+
+2、`$.Deferred`与`$.Callbacks`的对比
+
+|Callbacks|dtd.done|dtd.fail|dtd.notify|
+|:---:|:---:|:---:|:---:|
+|add()|done()|fail()|progress|
+|fire()|resolve()|reject()|/|
+
+3、memory的作用
+
+* 当状态已经完成时，即`dtd.resolve()`执行后，后面执行到`dtd.done()`语句时，由该语句绑定的回调都会立即触发
+
+4、promise和deferred对象区别
+
+（1）promise的实际属性和方法
+
+* 字面量方法
+    * state()
+    * always
+    * then()
+    * promise()
+* 赋值方法
+    * pipe(): `promise.pipe = promise.then`
+* 循环赋值方法
+    * done()
+    * fail()
+    * progress()
+
+（2）deferredd的实际属性和方法
+
+* 字面量方法
+    * 空
+* 循环赋值方法
+    * resolve()
+    * reject()
+    * notify()
+* 浅拷贝方法
+    * `promise.promise( deferred )`
+    * 获得promise所有实际的属性和方法
+
+（3）区别
+
+* promise对象不允许外部代码修改延迟状态
+* 原因就是promise对象比deferred对象少三个方法（resolve、reject和notify)
+
+5、when
+
+* 使用方法
+
+```
+function fn1() {
+    var dtd = $.Deferred();
+    dtd.resolve();
+    return dtd;
+}
+
+function fn2() {
+    var dtd = $.Deferred();
+    dtd.reject();
+    return dtd;
+}
+
+$.when(fn1(), 111, fn2(), 222)
+    .done(function() {...})  // 只有当fn1和fn2都成功，才会执行这个done
+    .fail(function() {...}); // fn1和fn2中任意一个失败，就会执行fail
+```
+
+* 原理
+    * 单个defer对象参数时
+        * 直接使用这个defer对象
+    * 多个defer对象参数时
+        * 新建一个defer对象和一个统计defer对象数的计数器
+        * 每一个defer成功后，计数器自减1
+        * defer计数器为0时，执行when的done
+        * 任何一个defer失败，都会去执行when的reject
+
+
+------
+
+
+
+### (3184, 3295) Support : 功能检测，如判断新老版本浏览器
+
+1、功能
 
 
 
