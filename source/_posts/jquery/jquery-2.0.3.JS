@@ -13,6 +13,8 @@
  */
 (function( window, undefined ) {
 
+// (  21,   94) 定义了一些变量和方法，jQuery = function() {}
+
 // Can't do this because several apps including ASP.NET trace
 // the stack via arguments.caller.callee and Firefox dies if
 // you try to trace through "use strict" call chains. (#13335)
@@ -93,6 +95,8 @@ var
 		jQuery.ready();
 	};
 
+
+// (  96,  283) 给jQuery对象添加一些方法和属性
 jQuery.fn = jQuery.prototype = {
 	// The current version of jQuery being used
 	jquery: core_version,
@@ -310,6 +314,8 @@ jQuery.fn = jQuery.prototype = {
 // Give the init function the jQuery prototype for later instantiation
 jQuery.fn.init.prototype = jQuery.fn;
 
+
+// ( 285,  347) extend : jQuery的继承方法
 jQuery.extend = jQuery.fn.extend = function() {
 	var options, name, src, copy, copyIsArray, clone,
 		target = arguments[0] || {},
@@ -376,6 +382,8 @@ jQuery.extend = jQuery.fn.extend = function() {
 	return target;
 };
 
+
+// ( 349,  817) jQuery.extend() : 扩展一些工具方法
 jQuery.extend({
 	// Unique for each copy of jQuery on the page
 	expando: "jQuery" + ( core_version + Math.random() ).replace( /\D/g, "" ),
@@ -901,6 +909,12 @@ function isArraylike( obj ) {
 
 // All jQuery objects should point back to these
 rootjQuery = jQuery(document);
+
+
+
+
+// ( 877, 2856) Sizzle : 复杂选择器的实现，是独立模块，如果其他应用开发中需要用到选择器，可单独下载这个模块
+
 /*!
  * Sizzle CSS Selector Engine v1.9.4-pre
  * http://sizzlejs.com/
@@ -2894,6 +2908,9 @@ function createOptions( options ) {
 	return object;
 }
 
+
+// (2880, 3042) Callbacks : 回调对象，对函数的统一管理
+
 /*
  * Create a callback list using the following parameters:
  *
@@ -3080,6 +3097,9 @@ jQuery.Callbacks = function( options ) {
 
 	return self;
 };
+
+
+// (3043, 3183) Deferred : 延迟对象，对异步操作的统一管理
 jQuery.extend({
 
 	Deferred: function( func ) {
@@ -3225,7 +3245,7 @@ jQuery.extend({
 });
 
 
-// 功能检测，如判断新老版本浏览器
+// (3184, 3295) Support : 功能检测，如判断新老版本浏览器
 jQuery.support = (function( support ) {
 	var input = document.createElement("input"),
 		fragment = document.createDocumentFragment(),
@@ -3242,21 +3262,21 @@ jQuery.support = (function( support ) {
 
 	// Support: Safari 5.1, iOS 5.1, Android 4.x, Android 2.3
 	// Check the default checkbox/radio value ("" on old WebKit; "on" elsewhere)
-	support.checkOn = input.value !== "";
+	support.checkOn = input.value !== "";  // 老版本webkit的checkbox的默认value值为''，其他为'on'
 
 	// Must access the parent to make an option select properly
 	// Support: IE9, IE10
-	support.optSelected = opt.selected;
+	support.optSelected = opt.selected;  // 下拉框的第一个子项是否默认选中
 
 	// Will be defined later
-	support.reliableMarginRight = true;
+	support.reliableMarginRight = true;  // 这三个检测需要等到DOM节点加载完成才能操作，会在后面定义
 	support.boxSizingReliable = true;
 	support.pixelPosition = false;
 
 	// Make sure checked status is properly cloned
 	// Support: IE9, IE10
 	input.checked = true;
-	support.noCloneChecked = input.cloneNode( true ).checked;
+	support.noCloneChecked = input.cloneNode( true ).checked;  // 检测克隆出来的复选框是不是也是被选中的
 
 	// Make sure that the options inside disabled selects aren't marked as disabled
 	// (WebKit marks them as disabled)
@@ -3339,6 +3359,9 @@ jQuery.support = (function( support ) {
 	return support;
 })( {} );
 
+
+
+// (3308, 3652) data() : data方法实现，数据缓存
 /*
 	Implementation Summary
 
@@ -3354,7 +3377,7 @@ var data_user, data_priv,
 	rbrace = /(?:\{[\s\S]*\}|\[[\s\S]*\])$/,
 	rmultiDash = /([A-Z])/g;
 
-function Data() {
+function Data() {  // 构造函数
 	// Support: Android < 4,
 	// Old WebKit does not have Object.preventExtensions/freeze method,
 	// return new empty object instead with no [[set]] accessor

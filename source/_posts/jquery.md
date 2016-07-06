@@ -35,7 +35,7 @@ date: 2016-06-27 16:01:03
 ```Javascript
 (function( window, undefined ) {
     (  21,   94) 定义了一些变量和方法，jQuery = function() {}
-    (  96,  283) 给jQuery对象，添加一些方法和属性
+    (  96,  283) 给jQuery对象添加一些方法和属性
     ( 285,  347) extend : jQuery的继承方法
     ( 349,  817) jQuery.extend() : 扩展一些工具方法
     ( 877, 2856) Sizzle : 复杂选择器的实现，是独立模块，如果其他应用开发中需要用到选择器，可单独下载这个模块
@@ -653,6 +653,77 @@ $.when(fn1(), 111, fn2(), 222)
 
 1、功能
 
+* 通过创建一些元素，判断元素的兼容性来得出浏览器的兼容性
+* 在support中检测差异，在hooks中处理兼容性差异
+
+2、checkbox的value默认值
+
+* 老版本webkit的checkbox的默认value值为''，其他为'on'
 
 
 
+
+------
+
+
+
+### (3308, 3652) data() : data方法实现，数据缓存
+
+1、attr、prop和data区别
+
+* attr
+    * 使用原生的`setAttribute`和`getAttribute`实现
+
+```
+document.getElementById('div1').setAttribute('name', 'hello')
+document.getElementById('div1').getAttribute('name')
+```
+
+* prop
+    * 直接设置DOM对象的属性
+
+```
+document.getElementById('div1')['name'] = 'hello'
+console.log(document.getElementById('div1')['name'])
+```
+
+* data
+    * 可防止设置的对象和DOM对象相互引用导致内存泄露
+
+* 区别
+    * attr和prop不适合设置大量数据，比较适合设置元素本身的数据，如类class、样式style等
+    * data适合设置大量数据，可以防止内存泄露的问题（DOM元素与对象之间相互引用，大部分浏览器会出现内存泄露）
+    ```
+    // 相互引用导致内存泄露
+    var dom = document.getElementById('div1');
+    var obj = {};
+    dom.name = obj;
+    obj.age = dom;
+
+    // 当挂载对象时，obj在其他地方可能引用o，那么就会内存泄露
+    var o = $('#div').attr('name', obj)
+    ```
+
+2、原理
+
+* 找一个中介cache来连接DOM元素和对象
+
+```
+$('#div1').data('name', obj);  // 执行后在元素上生成xxx为1的唯一标识
+<div id="div1" xxx="1"></div>
+
+$('#div2').data('age', obj)
+<div id="div2" xxx="2"></div>
+
+var cache = {
+    '1': {  // 相当于DOM元素上的属性值永远都是字符串或数字，不会是对象，于是就不会出现内存泄露问题
+        name: obj
+    },
+    '2': {
+        age: obj
+    }
+}
+
+```
+
+3、
