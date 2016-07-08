@@ -161,7 +161,7 @@ jQuery.fn = jQuery.prototype = {
     first(): 获取jquery对象集合中的第一个元素
     last():获取jquery对象集合中的最后一个元素
     eq(): 获取jquery对象集合中的第n个元素，n为方法入参
-    map(): 
+    map(): 遍历集合
     end(): 返回pushStack栈中的前一个元素
 
     // 数组的三个方法，源码内部使用
@@ -569,7 +569,7 @@ jQuery.extend({
 })
 ```
 
-2、`$.Deferred`与`$.Callbacks`的对比
+2、`$.Callbacks`与`$.Deferred`的对比
 
 |Callbacks|dtd.done|dtd.fail|dtd.notify|
 |:---:|:---:|:---:|:---:|
